@@ -43,14 +43,25 @@ describe('Login Page functionality validation', () => {
 		register.getRegisterText().should('contain.text', 'Register');
 	});
 
-	it('When provided correct login details and clicked on submit button products page should be displayed', () => {
+	it.only('When provided correct login details and clicked on submit button products page should be displayed', () => {
 		const login = new loginPage();
 		const prodPage = new productsPage();
+		cy.intercept('POST', '/api/ecom/auth/login', (req) => {
+			expect(req.body.userEmail).to.equal(
+				'santhoshsai4517@gmail.com'
+			);
+			expect(req.body.userPassword).to.equal('151Fa04124@4517');
+		}).as('loginRequest');
+
 		cy.login('santhoshsai4517@gmail.com', '151Fa04124@4517');
 		login.getSuccessToast().should(
 			'contain.text',
 			'Login Successfully'
 		);
+		cy.wait('@loginRequest').then((interception) => {
+			const sessionId = interception.response.body.token;
+			cy.log(`Session ID: ${sessionId}`);
+		});
 		prodPage.getLogoText().should('contain.text', 'Automation');
 	});
 });

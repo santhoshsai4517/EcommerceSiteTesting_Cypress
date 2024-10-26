@@ -31,6 +31,18 @@ class loginPage {
 	getSuccessToast() {
 		return cy.get('.toast-title');
 	}
+
+	getEmailErrorMessage() {
+		return cy.get(':nth-child(1) > .invalid-feedback > div');
+	}
+
+	getPasswordErrorMessage() {
+		return cy.get('.mb-4 > .invalid-feedback > div');
+	}
+
+	getLoginErrorMessage() {
+		return cy.get('.toast-message');
+	}
 }
 
 export default loginPage;
