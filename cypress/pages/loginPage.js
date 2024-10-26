@@ -43,6 +43,10 @@ class loginPage {
 	getLoginErrorMessage() {
 		return cy.get('.toast-message');
 	}
+
+	getPasswordUpdatedMessage() {
+		return cy.get('.ng-trigger');
+	}
 }
 
 export default loginPage;
