@@ -52,7 +52,7 @@ describe('Login Page functionality validation', () => {
 			);
 			expect(req.body.userPassword).to.equal('151Fa04124@4517');
 		}).as('loginRequest');
-
+		cy.visit('/');
 		cy.login('santhoshsai4517@gmail.com', '151Fa04124@4517');
 		login.getSuccessToast().should(
 			'contain.text',

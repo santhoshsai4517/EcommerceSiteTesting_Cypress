@@ -19,6 +19,7 @@ describe('Login page Error handling', () => {
 
 	it('When invalid email is given error should be displayed', () => {
 		const login = new loginPage();
+		cy.visit('/');
 		cy.login('13rfwv', '151Fa04124@4517');
 		login.getEmailErrorMessage().should(
 			'contain.text',
@@ -28,6 +29,7 @@ describe('Login page Error handling', () => {
 
 	it('When wrong email and password are given error should be displayed', () => {
 		const login = new loginPage();
+		cy.visit('/');
 		cy.login('santhoshsai4517@gmail.com', '123456');
 		login.getLoginErrorMessage().should(
 			'contain.text',
@@ -37,6 +39,7 @@ describe('Login page Error handling', () => {
 
 	it('When not registered email is given error should be displayed', () => {
 		const login = new loginPage();
+		cy.visit('/');
 		cy.login('santhoshsai4517fgvwr@gmail.com', '151Fa04124@4517');
 		login.getLoginErrorMessage().should(
 			'contain.text',
@@ -49,6 +52,7 @@ describe('Login page Error handling', () => {
 			statusCode: 500, // Unauthorized status code
 			body: { error: 'Unknown error occured' }, // Custom error message
 		}).as('failedLogin');
+		cy.visit('/');
 		cy.login('santhoshsai4517@gmail.com', '151Fa04124@4517');
 		cy.wait('@failedLogin').then((interception) => {
 			cy.url().should(
@@ -63,6 +67,7 @@ describe('Login page Error handling', () => {
 			req.body.userEmail = 'santhoshsai4517@gmail.com';
 			req.body.userPassword = '1234';
 		}).as('loginRequest');
+		cy.visit('/');
 		cy.login('santhoshsai4517@gmail.com', '151Fa04124@4517');
 		cy.wait('@loginRequest').then((interception) => {
 			const login = new loginPage();

@@ -26,11 +26,39 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import loginPage from '../pages/loginPage';
+import registerPage from '../pages/registerPage';
 
 Cypress.Commands.add('login', (email, password) => {
-	cy.visit('/');
 	const login = new loginPage();
 	login.getEmailEditText().type(email);
 	login.getPasswordEditText().type(password);
 	login.getSubmitButton().click();
 });
+
+Cypress.Commands.add(
+	'register',
+	(
+		fname,
+		lname,
+		email,
+		phonenumber,
+		occupation,
+		gender,
+		password,
+		confirmPassword,
+		check
+	) => {
+		const register = new registerPage();
+
+		register.getFirstNameEditBox().type(fname);
+		register.getLastNameEditBox().type(lname);
+		register.getEmailEditBox().type(email);
+		register.getMobileEditBox().type(phonenumber);
+		register.getOccupationDropDown().select(occupation);
+		register.getGenderRadioButton().check(gender);
+		register.getPasswordEditBox().type(password);
+		register.getConfirmPasswordEditBox().type(confirmPassword);
+		if (check) register.getCheckBox().check();
+		register.getRegisterButton().click();
+	}
+);
