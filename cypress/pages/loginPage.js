@@ -47,6 +47,10 @@ class loginPage {
 	getPasswordUpdatedMessage() {
 		return cy.get('.ng-trigger');
 	}
+
+	getSignOutMessage() {
+		return cy.get('.ng-trigger');
+	}
 }
 
 export default loginPage;

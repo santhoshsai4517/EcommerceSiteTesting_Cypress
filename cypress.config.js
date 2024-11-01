@@ -5,6 +5,10 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
 	projectId: '9jgiau',
 	e2e: {
+		retries: {
+			runMode: 2, // Number of retries when running tests in CLI
+			openMode: 0, // Number of retries when running tests in Cypress GUI
+		},
 		setupNodeEvents(on, config) {
 			// implement node event listeners here
 		},
