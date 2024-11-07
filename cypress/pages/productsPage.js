@@ -5,6 +5,10 @@ class productsPage {
 		return cy.get('h3');
 	}
 
+	getLogo() {
+		return cy.get('.left.mt-1');
+	}
+
 	getHomeButton() {
 		return cy.get('button[routerlink="/dashboard/"]');
 	}

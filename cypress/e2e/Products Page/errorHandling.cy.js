@@ -56,7 +56,7 @@ describe('Product page error handling validations', () => {
 		});
 	});
 
-	it.only('When user clicks on add product to cart and add to cart is failed error occurs', () => {
+	it('When user clicks on add product to cart and add to cart is failed error occurs', () => {
 		cy.wait(2000);
 
 		const prodPage = new productsPage();
