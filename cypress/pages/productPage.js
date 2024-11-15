@@ -17,9 +17,13 @@ class productPage {
 		return cy.get('.border-product p');
 	}
 
-    getContinueShoppingButton(){
-        return cy.get('.continue');
-    }
+	getContinueShoppingButton() {
+		return cy.get('.continue');
+	}
+
+	getProductAddedToCart() {
+		return cy.get('div[role="alert"]');
+	}
 }
 
 export default productPage;

@@ -132,7 +132,6 @@ describe('Cart page functionality validations', () => {
 
 		prodPage.getCartButton().click();
 		cart.getCart().should('have.length', products.length);
-
 		cart.getCart().each(($el, index, $list) => {
 			let i;
 			i = products.indexOf($el.find('.cartSection h3').text());
