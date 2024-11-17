@@ -54,9 +54,10 @@ describe('Login Page functionality validation', () => {
 		}).as('loginRequest');
 		cy.visit('/');
 		cy.login('santhoshsai4517@gmail.com', '151Fa04124@4517');
-		login.getSuccessToast()
-			.should('contain.text', 'Login Successfully')
-			.screenshot();
+		login.getSuccessToast().should(
+			'contain.text',
+			'Login Successfully'
+		);
 		cy.wait('@loginRequest').then((interception) => {
 			const sessionId = interception.response.body.token;
 			cy.log(`Session ID: ${sessionId}`);
