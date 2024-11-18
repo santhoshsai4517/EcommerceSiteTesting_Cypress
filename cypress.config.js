@@ -6,6 +6,7 @@ module.exports = defineConfig({
 	// video: true,
 	projectId: '9jgiau',
 	e2e: {
+		downloadsFolder: 'cypress/downloads',
 		retries: {
 			runMode: 2, // Number of retries when running tests in CLI
 			openMode: 0, // Number of retries when running tests in Cypress GUI
