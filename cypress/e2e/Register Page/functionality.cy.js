@@ -23,7 +23,7 @@ describe('Register Page functionality validation', () => {
 		const reg = new registerPage();
 		const prod = new productsPage();
 
-		const email = 'wwgogairhboidfgfs@gmail.com';
+		const email = 'wwrggrou3ghuidfgfs@gmail.com';
 
 		cy.intercept('POST', '/api/ecom/auth/register', (req) => {
 			expect(req.body.firstName).to.equal('santhosh');

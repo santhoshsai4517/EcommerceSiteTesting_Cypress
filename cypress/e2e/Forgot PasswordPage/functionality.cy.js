@@ -33,13 +33,13 @@ describe('Forgot Password page functionality validation', () => {
 
 		cy.intercept('POST', '/api/ecom/auth/new-password', (req) => {
 			expect(req.body.userEmail).to.equal('s1234@gmail.com');
-			expect(req.body.userPassword).to.equal('P@ssw0rd');
+			expect(req.body.userPassword).to.equal('123');
 		}).as('loginRequest');
 
 		login.getForgotPasswordLink().click();
 		forgotPassword.getEmailEditBox().type('s1234@gmail.com');
-		forgotPassword.getPasswordEditBox().type('P@ssw0rd');
-		forgotPassword.getConfirmPasswordEditBox().type('P@ssw0rd');
+		forgotPassword.getPasswordEditBox().type('123');
+		forgotPassword.getConfirmPasswordEditBox().type('123');
 		forgotPassword.getSubmitButton().click();
 		cy.wait('@loginRequest').then((interception) => {
 			expect(interception.response.body.message).to.eq(
@@ -52,7 +52,7 @@ describe('Forgot Password page functionality validation', () => {
 			'contain.text',
 			'Password Changed Successfully'
 		);
-		cy.login('s1234@gmail.com', 'P@ssw0rd');
+		cy.login('s1234@gmail.com', '123');
 		cy.url().should('eq', Cypress.config().baseUrl + '/dashboard/dash');
 	});
 });

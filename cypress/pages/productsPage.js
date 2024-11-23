@@ -18,7 +18,7 @@ class productsPage {
 	}
 
 	getCartButton() {
-		return cy.get('button[routerlink*="/cart"]');
+		return cy.get('.btn.btn-custom[routerlink="/dashboard/cart"]');
 	}
 
 	getSignOutButton() {
