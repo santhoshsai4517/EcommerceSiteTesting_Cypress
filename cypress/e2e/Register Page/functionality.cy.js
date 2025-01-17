@@ -3,6 +3,7 @@
 import loginPage from '../../pages/loginPage';
 import registerPage from '../../pages/registerPage';
 import productsPage from '../../pages/productsPage';
+import { faker } from '@faker-js/faker';
 
 describe('Register Page functionality validation', () => {
 	it('When landed on register and clicked on login link login page is displayed', () => {
@@ -23,11 +24,13 @@ describe('Register Page functionality validation', () => {
 		const reg = new registerPage();
 		const prod = new productsPage();
 
-		const email = 'wwrggrou3ghuidfgfs@gmail.com';
+		const email = faker.internet.email();
+		const firstName = faker.internet.firstName();
+		const lastName = faker.internet.lastName();
 
 		cy.intercept('POST', '/api/ecom/auth/register', (req) => {
-			expect(req.body.firstName).to.equal('santhosh');
-			expect(req.body.lastName).to.equal('sai');
+			expect(req.body.firstName).to.equal(firstName);
+			expect(req.body.lastName).to.equal(lastName);
 			expect(req.body.userEmail).to.equal(email);
 			expect(req.body.userMobile).to.equal('1234567890');
 			expect(req.body.userRole).to.equal('customer');
@@ -42,8 +45,8 @@ describe('Register Page functionality validation', () => {
 		login.getRegisterButton().click();
 
 		cy.register(
-			'santhosh',
-			'sai',
+			firstName,
+			lastName,
 			email,
 			'1234567890',
 			'Engineer',
